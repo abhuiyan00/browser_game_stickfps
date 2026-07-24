@@ -7,6 +7,35 @@ anonymous auth, no PII.
 
 **Status:** all 8 build phases complete (spec through deploy config), plus ten post-launch follow-up rounds (audits, gameplay/feel expansion, fast-pace redesign, then a full-colour + bots + killstreak-perks + second-map + grenade upgrade) — see [PROGRESS.md](PROGRESS.md).
 
+![A firefight on FOUNDRY-7 — server-authoritative hit registration, team-coloured stickmen (you blue, enemies red), and a live HUD](assets/gameplay-foundry7.jpg)
+
+<sub>_A real match, captured live: a 5v5 round on FOUNDRY-7 with the roster filled by bots. Everything below is the actual client driven end-to-end — lobby, buy phase, combat, scoreboard._</sub>
+
+## Screenshots
+
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <img src="assets/lobby.jpg" alt="The room-code lobby with both team rosters filled and the map selector">
+      <br><sub><b>Lobby.</b> Ephemeral 6-character room code, two crews (Ironclads vs Ash Syndicate), host-cyclable map, and a one-click <i>fill with bots</i> so a solo host can start a full 5v5.</sub>
+    </td>
+    <td width="50%" valign="top">
+      <img src="assets/buy-menu.jpg" alt="The buy-phase armory showing the Revolver and the locked Kar98">
+      <br><sub><b>Buy phase.</b> The armory opens for 8 seconds each round. The Revolver is free; the Kar98 unlocks once you can afford it — the purchase is validated server-side, not trusted from the client.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <img src="assets/scoreboard.jpg" alt="The live Tab scoreboard with per-player kills and deaths">
+      <br><sub><b>Scoreboard.</b> Hold <kbd>Tab</kbd> for the live board — per-player kills/deaths and round wins, sorted and self-highlighted. The kill feed and K/D here are driven by real bot-vs-bot combat.</sub>
+    </td>
+    <td width="50%" valign="top">
+      <img src="assets/gameplay-coldline9.jpg" alt="A firefight on the second map, COLDLINE-9, in cold blue lighting">
+      <br><sub><b>Second map — COLDLINE-9.</b> The same server-authoritative ±24m arena, re-lit cold and blue. Maps are cosmetic themes over one shared sim, so variety never forks the authoritative world.</sub>
+    </td>
+  </tr>
+</table>
+
 ## Stack
 
 | | |
@@ -48,6 +77,7 @@ troubleshooting, and env var reference: **[docs/RUNNING.md](docs/RUNNING.md)**.
 /client            Vite + React + TS + R3F frontend  (deploys to Vercel)
 /server            WebSocket game server              (deploys to Render/Koyeb/Fly.io)
 /docs              SRS, diagrams (inline Mermaid in SRS.md), specs, guides
+/assets            README screenshots (real captures of the running game)
 /.tooling/agents     architect / coder / tester subagent definitions
 /.tooling/commands   /game-loop orchestration command
 ```
