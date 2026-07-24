@@ -56,7 +56,7 @@ troubleshooting, and env var reference: **[docs/RUNNING.md](docs/RUNNING.md)**.
 | [docs/DOCKER.md](docs/DOCKER.md) | Run the server in Docker locally, before touching the cloud |
 | [docs/SUPABASE.md](docs/SUPABASE.md) | Run a full local Supabase stack (Postgres/Auth/Studio) via the CLI + Docker — no cloud account needed for dev |
 | [docs/TESTING.md](docs/TESTING.md) | Automated test coverage map (vitest + Playwright browser E2E) + manual QA checklist |
-| [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) | Vercel + Fly.io + Supabase deploy runbook |
+| [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) | Deploy runbook — Render/Koyeb backend (free, no card) + Vercel frontend + Supabase; Fly.io kept as a card-required alternative |
 | [docs/security-audit-phase7.md](docs/security-audit-phase7.md) | Server-authority audit — what was checked, how, and one real vulnerability found and fixed |
 | [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) | The architect → coder → tester build process and codebase conventions |
 | [TASKS.md](TASKS.md) / [PROGRESS.md](PROGRESS.md) | Phase-by-phase build checklist and running log |
