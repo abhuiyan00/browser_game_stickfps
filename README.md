@@ -36,15 +36,6 @@ anonymous auth, no PII.
   </tr>
 </table>
 
-## Stack
-
-| | |
-|---|---|
-| Rendering | Three.js via React Three Fiber, Vite + React + TypeScript |
-| Networking | WebSocket-over-TCP (`ws`), client-server only — no UDP, so the server runs on free no-card hosts |
-| Auth | Supabase anonymous sign-in |
-| Hosting | Frontend → Vercel, backend → any persistent Node host (Render/Koyeb free tier, or Fly.io); see [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) |
-
 ## Quick start
 
 ```bash
@@ -96,3 +87,29 @@ cd client && npm run test:e2e
 room create/join over a real WebSocket connection. See [docs/TESTING.md](docs/TESTING.md) for full
 coverage and the manual QA checklist for what's still human-only (movement feel, round timing) —
 and [PROGRESS.md](PROGRESS.md)'s Follow-ups for the honest list of remaining gaps.
+
+## Technology
+
+**TypeScript** everywhere. **Client** (`/client`): **Three.js** via **React Three Fiber**
+(+ **drei**, **postprocessing**) renders the 3D arena, colour stickman avatars, weapons,
+and effects, built with **Vite** + **React**. **Server** (`/server`): a **Node** **WebSocket**
+service (**`ws`**, over TCP — no UDP, so it runs on free no-card tiers) holds the authoritative
+game state — a 60 Hz fixed-timestep simulation with server-side hit registration, the
+round/economy loop, and AI bots — with **Express** serving health and room endpoints.
+**Supabase** provides anonymous sign-in. Tests run on **Vitest** (52 client / 108 server) plus
+a **Playwright** two-browser lobby E2E, linted with **oxlint**. Deploys: client → **Vercel**,
+server → **Render / Koyeb / Fly.io**.
+
+## Skills demonstrated
+
+Real-time multiplayer networking (server-authoritative state, a fixed-timestep simulation, a
+lag-tolerant client) · 3D graphics and game feel in the browser (React Three Fiber,
+post-processing, low-poly modelling) · game-systems design (rounds, in-match economy, weapons,
+killstreak perks, server-side bots, two maps) · security-minded engineering (full server
+authority; a real client-trust vulnerability found and fixed — see the
+[audit](docs/security-audit-phase7.md)) · automated testing (unit + real-browser E2E) · a
+complete deploy story (Vercel + a Node host + Supabase).
+
+## License
+
+**MIT** — see [`LICENSE`](LICENSE). Free to use, copy, and adapt.
