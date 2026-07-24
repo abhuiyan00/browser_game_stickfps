@@ -1,0 +1,41 @@
+# Fly.io config for the stickfps game server.
+# Rename `app` to a globally-unique name before your first `flyctl launch`/`flyctl deploy`.
+app = "stickfps-server"
+primary_region = "iad"
+
+[build]
+
+[env]
+  PORT = "9090"
+  # Set after your first frontend deploy, once you know the client's real domain:
+  # `flyctl secrets set CORS_ORIGIN=https://your-app.vercel.app`
+  # (secrets override [env] and are not committed to source control)
+
+# HTTP service: serves /healthz AND the WebSocket game transport on /ws. The
+# transport is plain WebSocket-over-TCP now (no UDP) — so a single TCP/HTTP
+# service is all that's needed, and card-free hosts without UDP work too
+# (Render/Koyeb — see docs/DEPLOYMENT.md).
+[[services]]
+  protocol = "tcp"
+  internal_port = 9090
+
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
+
+  [[services.tcp_checks]]
+    interval = "15s"
+    timeout = "2s"
+    grace_period = "10s"
+
+  [[services.http_checks]]
+    path = "/healthz"
+    interval = "15s"
+    timeout = "2s"
+    grace_period = "10s"
+
+[[vm]]
+  size = "shared-cpu-1x"
